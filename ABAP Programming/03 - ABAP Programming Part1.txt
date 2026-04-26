@@ -1,0 +1,356 @@
+                                ABAP Programming - Part1
+
+Transaction code : SE38
+
+CTRL + D  - To duplicate a line.
+CTRL + < , * -  Comment
+CTRL + >  -  Uncomment
+:         - Chain Operator.
+.         - Period, To end a line.
+
+
+Pretty Printer -> for Proper Indentation. Makes the code easy to read.
+
+
+                                       Topic : Parameters & Select-options
+
+Parameters - Accepts Single Input.
+
+Select-options -  We can pass range of values.
+                  Low, High, Multiple Selection 
+
+Select options is a range table.
+
+Obligatory -To make parameters or select-options mandatory.
+No-Intervals - To remove the high range of Select Option.
+No Extension - Used to remove the multiple selection option.
+
+
+For Parameters, Use = in the where condition.
+For Select-options, Use IN in the where condition
+
+Q-1 : What are the 4 parts of a Select-option?
+Answer : SIGN(1) - I/E( Include, Exclude)
+         OPTION(2) -> Relational operator( EQ, BT-------)
+         LOW - Low value
+         HIGH - High value
+
+Q-2 : If we are passing only a low value in Select-option, what is the relational operator?
+Answer : EQ
+
+
+Q-3 : If we are passing only a low value and High value in Select-option, what is the relational operator?
+Answer : BT
+
+                                      Topic: Difference between Type and Like.
+
+1) TYPE - We assign data type directly to the data object while declaring.
+          It is a keyword used to refer to a data type. 
+   DATA : LV_DATA TYPE CHAR1.
+
+2) LIKE ->We assign the data type of another object to the declaring data object.The data type is referenced indirectly.
+          Like is a keyword used to copy the existing properties of already existing data object.
+
+   DATA : LV_DATA1 TYPE CHAR1.
+   DATA : LV_DATA TYPE LV_DATA1.
+
+                                      Topic : IF and CASE Statments( Conditional statements)
+
+IF -> It is a conditional statment. mutiple statements blocks are there, depends upon the condition one block will execute.
+
+      If None of the  If and Elseif conditions are satisfied, It will go to ELSE part. 
+
+CASE - It is also a conditional statment. mutiple statements blocks are there, depends upon the condition one block will execute.
+
+      If none of the condition is satisfied, It will fo to OTHERS part.  
+
+
+Important Point:( Difference between Case and IF from Performance Perspective )
+
+Case is always much more efficent ....because while you are using ELSEIF condtion ...it will check all the condition ...untill it will get get a true condtion ...
+
+while you are using case...it will only go to the true condition
+
+                                           Topic: String Operations
+
+1) CONCATENATE -> The Purpose of CONCATENATE is to CONCATENATE the Strings.
+Syntax : CONCATENATE ( Variable 1) ( Varibale 2) ( Variable 3) INTO ( Final Variable) SEPERATED BY 'Seperator'.
+Example - CONCATENATE lv_data1 lv_data2 lv_data3 INTO lv_final SEPERATED BY '.'.
+
+2) SPLIT -> It's purpose is to SPLIT the string.
+Pre-requisite -> Seperator must be there.
+Syntax : SPLIT ( Final Variable) AT ( Seperator) INTO variable1 variable2 -------.
+Example - SPLIT lv_final AT '.' INTO lv_data1 lv_data2 lv_data3.
+
+3) CONDENSE-> Used to remove the leading and trailing spaces.
+
+  A blank at the end of a line is a trailing space.
+
+4) CONDENSE NO-GAPS -> Used to remove the leading space , trailing space and spaces between the individual strings also.
+
+5) FIND -> FIND statement is used for finding occurrences of a pattern within a string.
+
+6) STRLEN -> Used to find the length of the string.
+
+7) TRANSLATE -> The TRANSLATE statement converts characters into upper or lower case.
+
+8) SHIFT -> This command is used to shift the contents of a string. It shifts a string by a given number of places.
+            Syntax : shift s_field [ by n places ] <mode>( By default mode is LEFT)
+            Example : SHIFT lv_data BY 5 places LEFT/RIGHT/CIRCULAR.
+
+
+                                            Topic : Loop and Loop commands.
+
+DO -> Unconditional Loop.
+WHILE -> Conditional Loop.
+LOOP-> For the Internal table.
+EXIT-> is used to exit from the loop.
+CONTINUE -> will skip the current processing of the record and then process the next record in the LOOP statement.
+CHECK -> We can use Inside a loop and outside a loop. 
+         Inside a loop - If the check condtion is not true, loop will skip the current loop pass and move to next loop pass.
+         Outside a loop - If the statement CHECK is used outside a loop and condtion is false, this statement exits the current processing block.
+
+
+                                              
+
+
+                                                Topic : System Variables
+
+SY-SUBRC - It is SAP system variable 
+RC( return code)
+SY-SUBRC = 0 (Successful)
+SY-SUBRC <> 0 ( Unsuccessful)
+
+SY-TABIX -> It is a system variable . It retruns the current line index inside a loop.
+
+SY-DATUM - system variable for current date.( Internal format - YYYYMMDD)
+
+SY-UNAME - It returns the User name.
+
+SY-UZEIT - It returns the current system time in HH:MM:SS format
+
+SY-UCOMM - System variable for User command.
+ 
+
+                                         Topic : Internal Table & Work areas
+
+Internal Table - Temperory storage on the application Layer.( Can store any number of records at run time)
+Work area -      Temperory storage on the application Layer.( Only one record at run time)
+
+                                         Topic : Types of Internal Table
+
+1) Standard Internal table -> Simplest Internal table(based upon Linear Search - Sequential Search).
+
+2) Sorted Internal table -> Binary Search( It will search for middle element, in the upper half the values will be less than the middle element, 
+                                           In the lower half the values will be greater than the middle element).
+3) Hashed Internal table -> Hash function( Hashing-  It will directly return the address of the record)
+
+ Standard Internal Tables
+
+1) They are the default internal tables.
+2) They are the index based Internal tables.
+3) Records can be inserted or appended.
+4) Data is not sorted by default, We can use SORT statement to sort the Internal table.
+5) We read a record using KEY or Index.
+6) Either Linear search(Sequential) or Binary search is used to search a record.
+7) Response time depends upon the number of entries in the internal table. Response time of a standard internal table
+   is improved by using Binary Search.
+
+
+TYPES: BEGIN OF lty_data,
+         ono TYPE zdeono_28,
+         pm  TYPE zdepm_28,
+       END OF lty_data.
+
+DATA : lt_data TYPE TABLE OF lty_data. 
+DATA : lt_data TYPE STANDARD TABLE OF lty_data. 
+
+Append Inserts the record at the last of the internal table whereas 
+Insert inserts the record at anywhere in the internal table.
+
+
+                                  Sorted Internal Tables
+
+1) They are the special type of internal tables in which data is automatically sorted.
+   We need to specify the key while declaring the sorted internal table. 
+2) They are also the index based Internal tables.
+3) Records can be inserted.
+4) Data already sorted, there is no need to use SORT statement.
+5) We read a record using KEY or Index.
+6) Binary search is used to search a record.
+7) Response time of a sorted internal table is fast as compared to Standard Internal table.
+
+TYPES: BEGIN OF lty_data,
+         ono TYPE zdeono_28,
+         pm  TYPE zdepm_28,
+       END OF lty_data.
+
+DATA : lt_data TYPE SORTED TABLE OF lty_data WITH UNIQUE KEY ONO PM. 
+DATA : lt_data TYPE SORTED TABLE OF lty_data WITH NON-UNIQUE KEY ONO PM.
+
+
+                                 Hashed Internal Tables
+1) They are the special type of internal table which works on HASH algorithms.We need to specify the 
+   unique key while declaring the internal table.
+
+  Hashing - It is a technique which directly returns the address of the record based upon the search
+            key without using the index.
+   
+   TYPES: BEGIN OF lty_data,
+         ono TYPE zdeono_28,
+         pm  TYPE zdepm_28,
+       END OF lty_data.
+
+DATA : lt_data TYPE HASHED TABLE OF lty_data WITH UNIQUE KEY ONO.
+
+2) They are not the index based Internal tables.
+3) Records can be inserted.
+4) There is no impact of SORT, as we read the record based upon the hashed algorithm.
+5) We Read a Record using Key, index is not applicable.
+6) Hashed algorithm is used to search a record.
+7) Response time is faster as compared to Standard and sorted internal tables, as response time
+   is independent of number of entries.	It is well suited for tables, where a table has huge number of records 
+   and we want to search based upon unique key. 
+
+
+
+                                            Topic : Categories of Internal table
+
+1) Internal table with header line -> Implicit(Internal) work area. SAP will automatically create the work area.
+                                      Work area name is same as that of internal table.
+                                      Obsolete now
+
+  As work area name is same as that of internal table, So clear and REFRESH have different meaning in Internal table with HEADER LINE.
+
+  
+  CLEAR[] - It will clear the contents of Internal table.
+  REFRESH - It will clear the contents of Internal table.
+  CLEAR - It will clear the work area.
+
+
+2) Internal table without header line-> Explicit( External) work area. 
+                                       We are explicitly specifying the work area.
+
+ As work area name is different from Intenal table name, so both CLEAR and REFRESH is used to clear the contents of Intenal table.
+
+ CLEAR, REFRESH - It will clear the contents of Internal table.
+ CLEAR - It will clear the work area.
+
+                                                  
+                                            Topic : Internal Table Operations
+
+APPEND -> Which Inserts data to internal table.
+
+DELETE -> Delete the records from the Internal table.
+
+MODIFY -> To Modify the records of the Internal table.
+
+SORT -> Is to sort the internal table.If we are not specifying anything, then by default It will sort in the ascending order.
+        If we want to sort in descending order, then we need to specify the keyword Descending.
+  
+LOOP -> To read the records one by one from the Internal table.
+
+READ TABLE-> It will read the first matching record from the Internal Table.
+
+DESCRIBE TABLE -> It will retrun the number of records in the internal table.
+
+Syntax : DESCRIBE TABLE (name of the internal table) LINES ( varibale name ) . 
+
+CLEAR,REFRESH -> To clear the contents of the Internal table.
+
+COLLECT -> It will make sum of amount values, based upon unique character values.
+
+Example : 
+Company name       Department          Amount
+Capgemini           HR                 10000
+Capgemini           Admin              20000
+Capgemini           Training           10000
+Capgemini           Admin              10000
+Capgemini           HR                 20000
+
+Company name       Department          Amount
+Capgemini           HR                 30000
+Capgemini           Admin              30000
+Capgemini           Training           10000 
+
+
+                                   
+
+
+                                                             
+
+
+
+                                                
+                                                     
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+                          
+  
+ 
+
+
+
+   
+ 
+
+       
+
+   
+
+
