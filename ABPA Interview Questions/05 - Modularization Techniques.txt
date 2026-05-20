@@ -1,0 +1,162 @@
+                            Topic : Modularization Techniques(INCLUDE PROGRAM)
+
+INCLUDE Program -> We can create with the help of SE38 transaction code. It is not an executeable program. 
+                   We can reuse Include program.
+
+Way to Reuse :  INCLUDE ( Include progrm name). 
+
+Example :  Suppose Include program name is ZINCLUDE.
+           INCLUDE ZINCLUDE. 
+
+
+                            Topic : Modularization Techniques(Function Module)
+
+Function Module -> It is a reuseable component. We will create only once and we can use at several places. It is an example of Modularization technique.
+
+Transaction code : SE37
+ 
+Function Group -> It is container for the function modules.
+
+Transaction Code : SE80
+
+Various tabs in Function Modules
+
+Attributes - It provides the generic infomation about the Function Module.( Date, User name, Function group name , Package name).
+Import - Input
+Export - Output
+Changing - Input/ Output.
+Tables -> For Internal tables
+Exceptions - It's purpose is to raise the exception/Error.
+Source Code - It's purpose it to write the logic.
+
+Ways to Declare Internal tables and Work areas
+
+DATA : LT_DATA TYPE TABLE OF ( Local Structure ).
+DATA : LT_DATA TYPE TABLE OF ( Global Structure ).
+DATA : LT_DATA TYPE (TABLE TYPE).
+
+DATA : LS_DATA TYPE ( Local Structure).
+DATA : LS_DATA TYPE ( Global Structure).
+
+
+                                  Modularization Techniques(Sub routines)
+
+
+It is also an Modularization technique. There is no seperate transaction code( ABAP workbench tool) to create a Subroutine.
+
+Syntax :  PERFORM ( PERFORM NAME) TABLES USING CHANGING.
+
+We can not change the sequence of TABLES USING CHANGING, but If one is not required , We can skip it.
+
+Example - If Tables is not required , then we can use USING CHANGING. 
+
+How to reuse a Sub routine :
+
+PERFORM ( PERFORM NAME) IN PROGRAM ( PROGRAM NAME) TABLES USING CHANGING IF FOUND.
+
+ 
+Q-1 : Difference between Include program and Function Module.
+
+Answer : Include Program does not have any Interface( No Input/Output Provison), But the Function module has a Interface.( Input/ output provison with 
+                                                                                                                           the help of Import/Export tabs).
+
+
+Q-2 : Difference between Include program and Sub routine.
+
+Answer : Include Program does not have any Interface( No Input/Output Provison), But the Subroutine has a Interface.( Tables, Using, Changing)
+
+
+Q-3 : Difference between Function module and Subroutines.
+
+Answer : Function Module : There is a Seperate transaction code SE37 ( Workbench tool) to create a Function module.
+         Subroutines : There is no seperate workbench tool to create a Subroutine.
+
+        Function Module : We can check the output of Function module using  F8.( We can independently run a Function module to check the output)
+        Subroutines : We can not run a subroutine independently.
+
+        Function Module : There is an Exception tab to raise the exception.
+        Sub routines : There is no exception tab.
+
+
+
+
+
+
+
+                                                             
+
+
+
+                                                
+                                                     
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+                          
+  
+ 
+
+
+
+   
+ 
+
+       
+
+   
+
+

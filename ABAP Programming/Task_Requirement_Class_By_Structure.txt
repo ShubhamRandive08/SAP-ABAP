@@ -1,0 +1,11 @@
+From VBAK
+
+ERDAT	ERDAT Record Created ON
+ERZET	ERZET Entry Time
+ERNAM	ERNAM Name of person responsible for creating the object
+
+FROM VBAP
+
+POSNR	POSNR_VA Sales Document Item
+MATNR	MATNR    Material Number
+MATWA	MATWA    Material Entered

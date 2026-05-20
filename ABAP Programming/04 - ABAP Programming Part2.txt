@@ -1,0 +1,241 @@
+                                  ABAP Programming - Part2
+
+                       Topic : Contol break structures/Control break statements
+
+Pre-requisities : 1) Internal table should be in the sorted order.
+                  2) Control break structures should be applied inside a loop.
+
+AT FIRST -> It will trigger for the first iteration of the Internal table.
+AT LAST -> It will trigger for the last ireration of Internal table.
+AT NEW <FIELDNAME> -> Statements will execute for a group of records, having the same value for field name, but for the first time.
+AT END OF <FIELDNAME> -> Statements will execute for a group of records, having the same value for field name, but for the last time.
+
+IS NOT INITIAL -> IS NOT NULL, IS NOT BLANK.
+IS INITIAL -> IS NULL, IS BLANK.
+
+
+                                                Topic : OPEN SQL & NATIVE SQL
+OPEN SQL -> Database Independent.
+Native SQL -> Database Dependent.
+
+
+                                             JOINS
+
+1) With the help of joins, we can access data from muliple tables in single select statement.
+    
+  Types of JOINS
+1) INNER JOIN - An inner join finds and returns matching data from tables based upon specified
+                conditions.
+
+   If one or more criteria are not met, no data records are created in the result set.
+
+2) OUTER JOIN - Outer join finds and returns matching data and non-matching data from tables.
+
+   Outer join is of 2 types.
+   
+   a) LEFT OUTER JOIN( LEFT JOIN) - The left outer join takes all the values from the left table 
+      and combines them with the values from the right table that meet the criteria.   
+
+   b) RIGHT OUTER JOIN( RIGHT JOIN) - The right outer join takes all the values from the right table 
+      and combines them with the values from the left table that meet the criteria.   
+
+ 
+                                                Topic : Best Coding Practises
+
+1) Never Use * , Make a structure of those columns which are required in the output.
+2) Fetching sequence should be same as that of structure sequence, otherwise type mismatch or wrong output will be there.
+3) Fetching sequence should be same as that of Data Dictionary sequence.
+4) Where condition sequence should be same as that of Data Dictionary sequence.
+5) Never use corresponding keyword.
+6) Use Binary Search in Read table.
+7) For Fetching data from Foreign key tables/depenedent tables - check for SY-SUBRC , Internal table not Initial condition.
+8) Use Paraller cursor in Nested loops.
+9) For Mutiple conditions, Use CASE Instead of IF.
+
+
+Paraller Cursor -> It's purpose is to achieve performance in case of nested loops.
+
+
+                                           Topic : Transaction Code
+
+Transaction Code : SE93( Create customer specific transaction codes)
+The screen number of Selection screen is 1000.
+
+Transaction code for Program and Selection screen.
+Trasaction code for tables.
+
+                                             Topic : Message class 
+
+
+Messages always plays an Important role for End user.
+Error( E) 
+Warning/Information-> I
+Success -> S
+
+
+Transaction code for Message Class = SE91.
+
+A message number is 3 characters long.( 000-999)
+
+Syntax : 
+
+MESSAGE E000(ZMSG_88).  
+Where 
+Message = Pre-defined keyword.
+E =  Message Type
+000 =  Message Number
+ZMSG_88 = Message Class.
+      
+
+Q-1 : How to pass values to a message number?
+
+Answer : & -> Operator which is used to pass values to a message number.
+
+Q-2 : How many & can be passed to message number?
+
+Answer : 4.
+
+
+
+                            Topic : Classical Report Events
+
+The program in which we are displaying the output with the help of WRITE statement is called as classical report.
+
+1) Initialization - This events calls before displaying the selection screen/Input screen.
+                     It's purpose is to assign  the default values to Parameters and Select-options.
+
+2) AT Selection Screen -> This events calls when user performs some action( Enter, F4 etc) on to the selection screen.
+                          It's purpose is to validate the Input.
+
+3) START-OF-SELECTION -> This events calls when user clicks execute button on the selection screen.
+                         The selection logic is the part of this event.
+
+4) END-OF-SELECTION -> This Event calls when selection process ends.( Call after End of data/Records).
+
+5) TOP-OF-PAGE -> The purpose of this event is to provide title/header at the begining of a new page.
+
+6) END-OF-PAGE -> The pupose of this event is to provide footer or some information at the end of a page.
+   Pre-requisite : We need to provide LINE-COUNT.
+   Example - LINE-COUNT 5(2)  -> It means end of page event will trigger after 3 lines of data and 2 lines are reserved for the footer.( Total : 3+2 = 5).
+
+
+                                     Topic : Interactive classical Report Events 
+
+PF-STATUS -> Personal Functions( We can create our own functions).
+
+The syntax to create own personal function( PF-STATUS) -> SET PF-STATUS 'STAT'.( STAT is the name of PF-status)
+
+1) AT USER-COMMAND -> When user clicks on the button created by PF-status, at that time AT USER-COMMAND Event is triggering.
+   system variable for User command -> SY-UCOMM.
+
+2) AT LINE-SELECTION-> When user double clicks on the line or select a line and press F2, at that time AT LINE-SELECTION event will trigger.
+
+    SY-LISEL - It is a system variable which returns the Contents of the selected line.
+    SY-LSIND - It is a system variable which returns the Index of the displayed list. 
+   
+
+Q-1: What are the four parts of GUI status?
+Answer : Menu Bar, Function Keys, Title Bar, Application Tool bar.
+
+Q-2 : How many basic list are there in classical repoting?
+Answer : 1.
+
+Q-3 : How many secondary list are there in classical repoting?
+Answer : 20.
+
+Q-4: How to enable double click on a line While creating your own PF functions? 
+Answer : You need to provide the function code for F2 in Recommended Function key settings.
+
+
+                                            Topic : Field-Symbols
+
+Field symbol is a placeholder for data object, which points to the value present at the memory address of a data object
+at run time.
+
+
+Link for Field-symbols:
+https://blogs.sap.com/2017/09/05/dynamic-programming-in-abap-part-1-introduction-to-field-symbols/
+
+
+
+
+
+
+
+                                                             
+
+
+
+                                                
+                                                     
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+                          
+  
+ 
+
+
+
+   
+ 
+
+       
+
+   
+
+
