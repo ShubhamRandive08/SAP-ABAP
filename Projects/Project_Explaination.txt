@@ -1,0 +1,34 @@
+Steps Of Project
+
+Step No. 01: Table and TMG creation
+
+Create the tables which are ZEMP_MASTER_MY and ZEMP_LEAVE_MY with the respected fields.
+
+MASTER TABLE NAME	ZEMP_MASTER_MY
+LEAVE TABLE NAME	ZEMP_LEAVE_MY
+
+
+Then create the TMG for maintain the records of the tables.
+
+TMG FOR MASTER TABLE	ZEMP_MASTER_MY
+TMG FOR LEAVE TABLE	ZEMP_LEAVE_MY
+
+
+Step No. 02 : Module Pool creation
+We have two methods for creation of the module pool 
+With using the SE80
+With using the SE38 (Using)
+
+We are using here with SE38 - Create the program as 'ZLEAVE_APP_MY'
+		- Give the title and select the type as Module Pool
+
+	(Program Name : ZLEAVE_APP_MY)
+	Create DATA 
+	DATA: gv_emp_id type zemp_id,
+      	      gv_from_date type sy-datum,
+      	      gv_to_date type sy-datum,
+      	      gv_reason type char100,
+              ok_code type sy-ucomm.
+
+	Then Open your program ( 
+
